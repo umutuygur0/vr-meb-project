@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEditor;
 
 public class RevertToStandardShader : MonoBehaviour
@@ -23,3 +23,4 @@ public class RevertToStandardShader : MonoBehaviour
         AssetDatabase.Refresh();
     }
 }
+*/
