@@ -1,16 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI; // Normal UI Text
+using UnityEngine.UI;
+
+
 
 public class PoliceWalker : MonoBehaviour
 {
+    [Header("Yürüyüş Ayarları")]
     public float walkSpeed = 2f;
-    private Transform target;
+
+    [SerializeField] private Transform target;
     private Animator animator;
 
     [Header("Mesaj Ayarları")]
-    public CanvasGroup messageCanvasGroup; // CanvasGroup ile fade kontrolü
-    public Text messageText;               // Normal UI Text
-    public float fadeDuration = 1.5f;      // Ne kadar sürede görünsün
+    public Canvas messageCanvas; // Polis objesinin child Canvas'ı
+    public Text messageText;     // Text hâlâ var, ama değiştirmek zorunda değilsin
     private bool messageShown = false;
 
     public void SetTarget(Transform walkTarget)
@@ -22,17 +25,22 @@ public class PoliceWalker : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        // Mesaj başta görünmesin
-        if (messageCanvasGroup != null)
-            messageCanvasGroup.alpha = 0;
+        // Başlangıçta Canvas pasif olsun
+        if (messageCanvas != null)
+            messageCanvas.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (target == null) return;
+        if (target == null)
+        {
+            if (animator != null)
+                animator.SetBool("isWalking", false);
+            return;
+        }
 
         float distance = Vector3.Distance(transform.position, target.position);
-        if (distance > 0.1f)
+        if (distance > 5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, walkSpeed * Time.deltaTime);
             transform.LookAt(target);
@@ -42,34 +50,24 @@ public class PoliceWalker : MonoBehaviour
         }
         else
         {
-            if (animator != null)
+            Debug.Log("aktifleşti1");
+            if (animator != null) { 
                 animator.SetBool("isWalking", false);
-
+                Debug.Log("aktifleşti2");
+            }
             if (!messageShown)
             {
                 messageShown = true;
-                ShowMessage("ZORBA OLMA, KANKA OL");
+                ShowMessage();
+                Debug.Log("aktifleşti3");
             }
+            Debug.Log("aktifleşti4");
         }
     }
 
-    void ShowMessage(string text)
+    void ShowMessage()
     {
-        if (messageText != null)
-            messageText.text = text;
-
-        if (messageCanvasGroup != null)
-            StartCoroutine(FadeIn());
-    }
-
-    System.Collections.IEnumerator FadeIn()
-    {
-        float elapsedTime = 0f;
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            messageCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
-            yield return null;
-        }
+        if (messageCanvas != null)
+            messageCanvas.gameObject.SetActive(true); // Canvas aktif oluyor
     }
 }
