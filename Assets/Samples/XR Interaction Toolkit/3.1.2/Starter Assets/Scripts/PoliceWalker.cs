@@ -44,6 +44,7 @@ public class PoliceWalker : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, walkSpeed * Time.deltaTime);
             transform.LookAt(target);
+            Debug.Log("aaa");
 
             if (animator != null)
                 animator.SetBool("isWalking", true);

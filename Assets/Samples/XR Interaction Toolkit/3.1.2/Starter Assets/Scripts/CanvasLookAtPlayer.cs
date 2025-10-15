@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class CanvasLookAtPlayer : MonoBehaviour
 {
     public Transform playerCamera; // XR Origin içindeki Camera (genelde MainCamera)

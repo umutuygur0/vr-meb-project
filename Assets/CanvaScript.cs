@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class ShowCanvasAfterDelay : MonoBehaviour
 {
     public GameObject targetCanvas; // Inspector’dan atayacağın Canvas
