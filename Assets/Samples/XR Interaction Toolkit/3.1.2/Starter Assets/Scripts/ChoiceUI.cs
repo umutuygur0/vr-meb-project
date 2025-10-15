@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChoiceUI : MonoBehaviour
 {
@@ -7,9 +6,6 @@ public class ChoiceUI : MonoBehaviour
     public GameObject policeGoodPrefab;
     public GameObject policeBadPrefab;
     public Transform policeSpawnPoint;
-
-    public GameObject messageCanvas; // Canvas içindeki yazı objesi
-    public float policeWalkTime = 3f;
 
     public void ShowChoices()
     {
@@ -19,16 +15,16 @@ public class ChoiceUI : MonoBehaviour
     public void OnStopBullying()
     {
         choicePanel.SetActive(false);
-        StartCoroutine(SpawnPoliceSequence(true));
+        SpawnPolice(true);
     }
 
     public void OnSupportBullying()
     {
         choicePanel.SetActive(false);
-        StartCoroutine(SpawnPoliceSequence(false));
+        SpawnPolice(false);
     }
 
-    System.Collections.IEnumerator SpawnPoliceSequence(bool isGoodChoice)
+    void SpawnPolice(bool isGoodChoice)
     {
         GameObject police = Instantiate(
             isGoodChoice ? policeGoodPrefab : policeBadPrefab,
@@ -36,15 +32,7 @@ public class ChoiceUI : MonoBehaviour
             Quaternion.identity
         );
 
-        // Polisin yürüyüş süresini bekle
-        yield return new WaitForSeconds(policeWalkTime);
-
-        // Canvas'ı aktif et
-        messageCanvas.SetActive(true);
-
-        yield return new WaitForSeconds(3f);
-
-        // Canvas'ı kapat
-        messageCanvas.SetActive(false);
+        // Polisi görünür yap
+        police.SetActive(true);
     }
 }
