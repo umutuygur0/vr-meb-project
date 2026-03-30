@@ -9,7 +9,7 @@ namespace VrChoiceApi.Controllers
     public class ChoicesController : ControllerBase
     {
         private readonly string _connectionString =
-            "Host=localhost;Port=5432;Username=postgres;Password=Talib123!;Database=UnityVRDecisionSave";
+            "Host=localhost;Port=5432;Username=pgsqlİsminiz;Password=pgsqlŞifreniz;Database=UnityVRDecisionSave";
 
         [HttpPost]
         public async Task<IActionResult> SaveChoice([FromBody] ChoiceDto dto)
