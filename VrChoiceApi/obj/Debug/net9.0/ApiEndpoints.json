@@ -1,0 +1,39 @@
+[
+  {
+    "ContainingType": "VrChoiceApi.Controllers.ChoicesController",
+    "Method": "SaveChoice",
+    "RelativePath": "api/Choices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "VrChoiceApi.Models.ChoiceDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VrChoiceApi.Controllers.ChoicesController",
+    "Method": "GetChoice",
+    "RelativePath": "api/Choices/{userId}/{eventId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "eventId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
