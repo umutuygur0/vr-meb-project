@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Dialogue Bubbles")]
     public GameObject[] speechBubbles;
+
+    [Header("Timing")]
     public float visibleTime = 5f;
     public float delayBetweenBubbles = 1f;
-    public GameObject choiceUI;
 
     private bool hasStarted = false;
 
@@ -25,11 +26,16 @@ public class DialogueManager : MonoBehaviour
         foreach (var bubble in speechBubbles)
         {
             bubble.SetActive(true);
+
             yield return new WaitForSeconds(visibleTime);
+
             bubble.SetActive(false);
+
             yield return new WaitForSeconds(delayBetweenBubbles);
         }
 
-        FindObjectOfType<ChoiceUI>().ShowChoices(); // Butonlar� g�ster
+        // 🔥 BURASI ÖNEMLİ
+        // Dialog bitti → seçimleri aç
+        FindObjectOfType<ChoicePoolManager>().ShowCurrentChoice();
     }
 }

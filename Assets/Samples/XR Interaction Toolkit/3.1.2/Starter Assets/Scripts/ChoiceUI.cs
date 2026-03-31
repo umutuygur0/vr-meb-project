@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ChoiceUI : MonoBehaviour
@@ -7,24 +8,29 @@ public class ChoiceUI : MonoBehaviour
     public GameObject policeBadPrefab;
     public Transform policeSpawnPoint;
 
+    public Action OnPoliceSpawned;
+
     public void ShowChoices()
     {
         choicePanel.SetActive(true);
     }
 
-    public void OnStopBullying()
+    public void HideChoices()
     {
         choicePanel.SetActive(false);
+    }
+
+    public void SpawnGoodPolice()
+    {
         SpawnPolice(true);
     }
 
-    public void OnSupportBullying()
+    public void SpawnBadPolice()
     {
-        choicePanel.SetActive(false);
         SpawnPolice(false);
     }
 
-    void SpawnPolice(bool isGoodChoice)
+    private void SpawnPolice(bool isGoodChoice)
     {
         GameObject police = Instantiate(
             isGoodChoice ? policeGoodPrefab : policeBadPrefab,
@@ -32,7 +38,8 @@ public class ChoiceUI : MonoBehaviour
             Quaternion.identity
         );
 
-        // Polisi görünür yap
         police.SetActive(true);
+
+        OnPoliceSpawned?.Invoke();
     }
 }
