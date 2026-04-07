@@ -1,9 +1,9 @@
-using System;
+using UnityEngine;
 
-[Serializable]
-public class ChoiceData
+[CreateAssetMenu(fileName = "NewChoice", menuName = "Choice Data")]
+public class ChoiceData : ScriptableObject 
 {
     public string eventId;
-    public string optionA;
-    public string optionB;
+    [TextArea(2, 5)] public string optionA;
+    [TextArea(2, 5)] public string optionB;
 }

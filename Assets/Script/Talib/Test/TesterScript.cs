@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class TesterScript : MonoBehaviour
 {
-    [SerializeField] private TesterScript2 testerScript2;
-    void Start()
-    {
-       FindObjectOfType<ChoicePoolManager>().ShowCurrentChoice(); 
-    }
+    [SerializeField] private ActionSequence actionSequence;
 
-    public void onNextChoice()
+    private void Start()
     {
-        testerScript2.startAfterTester1();
+        Debug.Log("Tester: Starting Sequence...");
+        actionSequence.StartSequence();
     }
 }

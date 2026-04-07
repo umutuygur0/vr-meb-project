@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
@@ -6,7 +7,6 @@ using UnityEngine.Networking;
 public class ChoiceApiManager : MonoBehaviour
 {
     public static ChoiceApiManager Instance;
-
     [SerializeField] private string apiUrl = "https://localhost:7192/api/Choices";
 
     private void Awake()
@@ -17,7 +17,7 @@ public class ChoiceApiManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public IEnumerator SendChoice(ChoiceRequest request)
+    public IEnumerator SendChoice(ChoiceRequest request, Action<bool> onResult)
     {
         string json = JsonUtility.ToJson(request);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
@@ -31,13 +31,13 @@ public class ChoiceApiManager : MonoBehaviour
 
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("Seçim başarıyla kaydedildi.");
-            Debug.Log("Response: " + webRequest.downloadHandler.text);
+            Debug.Log("Success: " + webRequest.downloadHandler.text);
+            onResult?.Invoke(true); // Tell the UI it worked!
         }
         else
         {
-            Debug.LogError("API hatası: " + webRequest.error);
-            Debug.LogError("Response: " + webRequest.downloadHandler.text);
+            Debug.LogError("API Error: " + webRequest.error);
+            onResult?.Invoke(false); // Tell the UI it failed
         }
     }
 }

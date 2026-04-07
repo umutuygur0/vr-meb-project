@@ -12,29 +12,25 @@ public class ChoicePoolManager : MonoBehaviour
     private int currentChoiceIndex = 0;
 
     public void ShowCurrentChoice()
+{
+    if (choices == null || choices.Length == 0)
     {
-        if (choices == null || choices.Length == 0)
-        {
-            Debug.LogWarning("Choice pool boş.");
-            return;
-        }
-
-        if (currentChoiceIndex < 0 || currentChoiceIndex >= choices.Length)
-        {
-            Debug.Log("Geçerli seçim kalmadı.");
-            return;
-        }
-
-        ChoiceData currentChoice = choices[currentChoiceIndex];
-
-        choiceEventUI.SetupChoice(
-            currentChoice.eventId,
-            currentChoice.optionA,
-            currentChoice.optionB
-        );
-
-        choiceUI.SetActive(true);
+        Debug.LogWarning("Choice pool boş.");
+        return;
     }
+
+    if (currentChoiceIndex < 0 || currentChoiceIndex >= choices.Length)
+    {
+        Debug.Log("Geçerli seçim kalmadı.");
+        return;
+    }
+
+    ChoiceData currentChoice = choices[currentChoiceIndex];
+
+    choiceEventUI.SetupChoice(currentChoice); 
+
+    choiceUI.SetActive(true);
+}
 
     public void GoToNextChoice()
     {

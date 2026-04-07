@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class DialogueManager : MonoBehaviour
     public float visibleTime = 5f;
     public float delayBetweenBubbles = 1f;
 
+    [Header("Events")]
+    // This event allows you to plug in the ActionSequence.Advance in the Editor
+    public UnityEvent onDialogueComplete;
+    
     private bool hasStarted = false;
 
     public void StartDialogue()
@@ -33,9 +38,8 @@ public class DialogueManager : MonoBehaviour
 
             yield return new WaitForSeconds(delayBetweenBubbles);
         }
-
-        // 🔥 BURASI ÖNEMLİ
-        // Dialog bitti → seçimleri aç
-        FindObjectOfType<ChoicePoolManager>().ShowCurrentChoice();
+        hasStarted = false;
+        
+        onDialogueComplete?.Invoke();
     }
 }

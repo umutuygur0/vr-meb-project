@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TriggerActivator : MonoBehaviour
 {
+    [SerializeField] private ActionSequence actionSequence;
     public GameObject exclamationMark;
     public GameObject gameplayRoot;
-    public DialogueManager dialogueManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +12,7 @@ public class TriggerActivator : MonoBehaviour
         {
             exclamationMark.SetActive(false);
             gameplayRoot.SetActive(true);
-            dialogueManager.StartDialogue();
+            actionSequence.StartSequence();
         }
     }
 }
