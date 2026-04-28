@@ -7,10 +7,11 @@ public class GroupDialogueTrigger : MonoBehaviour
     public string playerTag = "Player";
 
     [Header("Optional")]
-    public GameObject exclamationMark; // varsa
+    public GameObject exclamationMark;
+    [SerializeField] private ActionSequence actionSequence;
 
     [Header("Popup System")]
-    public GameObject popupRoot; // boş bir parent (aktif/pasif için)
+    public GameObject popupRoot;
     public List<ChildPopupView> popups; // Zeynep, Demir, Yaşar sırasıyla
 
     [Header("Timing")]
@@ -32,7 +33,12 @@ public class GroupDialogueTrigger : MonoBehaviour
             exclamationMark.SetActive(false);
 
         popupRoot.SetActive(true);
-        StartCoroutine(RunDialogue());
+        actionSequence.StartSequence();
+    }
+
+    public void StartDialog()
+    {
+        StartCoroutine(RunDialogue());    
     }
 
     IEnumerator RunDialogue()
@@ -50,8 +56,6 @@ public class GroupDialogueTrigger : MonoBehaviour
         }
 
         popupRoot.SetActive(false);
-
-        if (quizUI != null)
-            quizUI.StartQuiz();
+        actionSequence.Advance();
     }
 }

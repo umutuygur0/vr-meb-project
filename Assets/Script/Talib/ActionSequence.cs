@@ -32,6 +32,7 @@ public class ActionSequence : MonoBehaviour
 
     public void Advance()
     {
+        steps[currentStepIndex].onStepComplete?.Invoke();
         currentStepIndex++;
         PlayStep();
     }

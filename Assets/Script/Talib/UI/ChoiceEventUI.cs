@@ -5,10 +5,14 @@ using UnityEngine.UI;
 public class ChoiceEventUI : MonoBehaviour
 {
     [Header("UI")]
+    [SerializeField] private GameObject ChoiceCanvas;
+    [SerializeField] private TMP_Text questionTextUI;
     [SerializeField] private TMP_Text optionATextUI;
     [SerializeField] private TMP_Text optionBTextUI;
+    [SerializeField] private TMP_Text optionCTextUI;
     [SerializeField] private Button buttonA;
     [SerializeField] private Button buttonB;
+    [SerializeField] private Button buttonC;
 
     // This is the reference to your ScriptableObject
     private ChoiceData currentData; 
@@ -20,15 +24,19 @@ public class ChoiceEventUI : MonoBehaviour
 
         if (optionATextUI != null) optionATextUI.text = data.optionA;
         if (optionBTextUI != null) optionBTextUI.text = data.optionB;
+        if (optionCTextUI != null) optionCTextUI.text = data.optionC;
+        if(questionTextUI != null) questionTextUI.text = data.question;
         
         SetButtonsInteractable(true);
     }
 
     public void SelectOptionA() => SendChoice(0, currentData.optionA);
     public void SelectOptionB() => SendChoice(1, currentData.optionB);
+    public void SelectOptionC() => SendChoice(2, currentData.optionC);
 
     private void SendChoice(int selectedOption, string selectedText)
 {
+    Debug.Log("BUTTON CLICKED");
     SetButtonsInteractable(false);
 
     if (currentData == null) 
@@ -39,13 +47,13 @@ public class ChoiceEventUI : MonoBehaviour
 
     ChoiceRequest request = new ChoiceRequest
     {
-        userId = GetUserId(),
+        userId = SessionManager.Instance.UserId,
         eventId = currentData.eventId,
         selectedOption = selectedOption,
         selectedText = selectedText
     };
 
-    ChoiceApiManager.Instance.StartCoroutine(ChoiceApiManager.Instance.SendChoice(request, (success) => 
+    ChoiceApiManager.Instance.SendChoice(request, (success) => 
     {
         if (success)
         {
@@ -61,19 +69,20 @@ public class ChoiceEventUI : MonoBehaviour
         {
             SetButtonsInteractable(true);
         }
-    }));
+    });
+    CloseCanvas();
 }
 
     private void SetButtonsInteractable(bool state)
     {
         if (buttonA != null) buttonA.interactable = state;
         if (buttonB != null) buttonB.interactable = state;
+        if (buttonC != null) buttonC.interactable = state;
     }
 
-    private string GetUserId()
+    private void CloseCanvas()
     {
-        if (!PlayerPrefs.HasKey("userId"))
-            PlayerPrefs.SetString("userId", System.Guid.NewGuid().ToString());
-        return PlayerPrefs.GetString("userId");
+        ChoiceCanvas.SetActive(false);
     }
+
 }

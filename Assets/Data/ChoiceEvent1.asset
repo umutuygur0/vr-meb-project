@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03936ff0e9d62234c8936662ec04ea88, type: 3}
   m_Name: ChoiceEvent1
   m_EditorClassIdentifier: 
-  eventId: Event_03
+  eventId: Event_01
+  question: Ne yapmalisin ?
   optionA: "zorbaligi destekle\t"
   optionB: zorbaligi onle
+  optionC: "Tarafs\u0131z kal"

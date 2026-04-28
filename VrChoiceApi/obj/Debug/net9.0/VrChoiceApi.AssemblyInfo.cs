@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VrChoiceApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08829045bbf9173c6c8c311ce4fecb9a6224722d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c06d22a5a1933077cedcc927338b5648c5afee8f")]
 [assembly: System.Reflection.AssemblyProductAttribute("VrChoiceApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VrChoiceApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,36 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03936ff0e9d62234c8936662ec04ea88, type: 3}
   m_Name: ChoiceEvent2
   m_EditorClassIdentifier: 
-  eventId: Event_04
-  optionA: kapiyi ac
-  optionB: kapiyi kapat
-  onOptionASelected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3215141048551638163, guid: 8f95a5d30869fc2498bde82ed8b65ea5, type: 3}
-        m_TargetAssemblyTypeName: ActionSequence, Assembly-CSharp
-        m_MethodName: Advance
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onOptionBSelected:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3215141048551638163, guid: 8f95a5d30869fc2498bde82ed8b65ea5, type: 3}
-        m_TargetAssemblyTypeName: ActionSequence, Assembly-CSharp
-        m_MethodName: Advance
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  eventId: 02
+  question: "Ne yapard\u0131n\t"
+  optionA: "Zorba olma kanka ol\t"
+  optionB: "Bensiz mi dalga ge\xE7iyorsunuz, ay\u0131p ama insan bekler"
+  optionC: "Yapt\u0131\u011F\u0131n\u0131z \u015Fey \xE7ok k\xF6t\xFC bir insanla
+    dalga ge\xE7memiliyiz"

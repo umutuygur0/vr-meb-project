@@ -15,11 +15,6 @@ public class ChoiceUI : MonoBehaviour
         choicePanel.SetActive(true);
     }
 
-    public void HideChoices()
-    {
-        choicePanel.SetActive(false);
-    }
-
     public void SpawnGoodPolice()
     {
         SpawnPolice(true);

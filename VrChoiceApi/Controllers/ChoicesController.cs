@@ -8,8 +8,12 @@ namespace VrChoiceApi.Controllers
     [Route("api/[controller]")]
     public class ChoicesController : ControllerBase
     {
-        private readonly string _connectionString =
-            "Host=localhost;Port=5432;Username=postgres;Password=Talib123!;Database=UnityVRDecisionSave";
+        private readonly string _connectionString;
+
+        public ChoicesController(IConfiguration config)
+        {
+            _connectionString = config.GetConnectionString("DefaultConnection");
+        }
 
         [HttpPost]
         public async Task<IActionResult> SaveChoice([FromBody] ChoiceDto dto)

@@ -19,6 +19,8 @@ public class ChoicePoolManager : MonoBehaviour
         return;
     }
 
+    Debug.Log("CHOICE SPAWNED");
+
     if (currentChoiceIndex < 0 || currentChoiceIndex >= choices.Length)
     {
         Debug.Log("Geçerli seçim kalmadı.");
